@@ -2,6 +2,8 @@ import { Component, EventEmitter } from 'angular2/core';
 import { TaskListComponent } from './task-list.component';
 import { Task } from './task.model';
 
+
+//Root and Parent---------------------
 @Component({
   selector: 'my-app',
   directives: [TaskListComponent],
@@ -21,8 +23,8 @@ export class AppComponent {
     this.tasks = [
       new Task("Create To-Do List app.", 0),
       new Task("Learn Kung Fu.", 1),
-      new Task("Rewatch all the Lord of the Rings movies.", 2),
-      new Task("Do the laundry.", 3)
+      new Task("Jump off a bridge.", 2),
+      new Task("Do the laundry?", 3)
     ];
   }
   taskWasSelected(clickedTask: Task): void {
