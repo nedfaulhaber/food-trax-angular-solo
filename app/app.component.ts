@@ -1,33 +1,62 @@
 import { Component, EventEmitter } from 'angular2/core';
-import { TaskListComponent } from './task-list.component';
-import { Task } from './task.model';
+import { Food } from './food.model';
 
+//1st child - food-list//
+@Component({
+  selector: 'food-list',
+  inputs: ['foodList'],
+  outputs: ['onFoodSelect'],
+  template: `
+  <div *ngFor="#currentFood of foodList" (click)="foodClicked(currentFood)">
+    <h3> Meal Time! </h3>
+    <h4>Name: {{currentFood.name}}</h4>
+    <h4>Calories: {{currentFood.calories}}</h4>
+    <h4>Details: {{currentFood.details}}</h4>
+  </div>
+  `
+})
 
-//Root and Parent---------------------
+export class FoodListComponent {
+  public foodList: Food[];
+  public onFoodSelect: EventEmitter<Food>;
+  constructor() {
+    this.onFoodSelect = new EventEmitter();
+  }
+  foodClicked(clickedFood: Food): void {
+    console.log('child', clickedFood);
+   this.onFoodSelect.emit(clickedFood);
+ }
+}
+
+//root component//
 @Component({
   selector: 'my-app',
-  directives: [TaskListComponent],
+  directives: [FoodListComponent],
   template: `
     <div class="container">
-      <h1>To-Do List</h1>
-      <task-list
-        [taskList]="tasks"
-        (onTaskSelect)="taskWasSelected($event)">
-      </task-list>
+      <h1>What Was That I Ate??</h1>
+      <food-list
+        [foodList]="foods"
+        (onFoodSelect)="foodWasSelected($event)">
+      </food-list>
+      <br>
+      <h5>For Date: 06/03/16</h5>
     </div>
   `
 })
+
 export class AppComponent {
-  public tasks: Task[];
+  public foods: Food[];
   constructor(){
-    this.tasks = [
-      new Task("Create To-Do List app.", 0),
-      new Task("Learn Kung Fu.", 1),
-      new Task("Jump off a bridge.", 2),
-      new Task("Do the laundry?", 3)
+    this.foods = [
+      new Food("Cereal", 240, "Gosh darn yummy!"),
+      new Food("Guiness", 125, "Guinness is good for you - gives you strength."),
+      new Food("Club Sandwich", 590, "Toothpicks and triangles? I want in!"),
+      new Food("Grasshopper Salad", 20, "I wish this was another club sandwich."),
+      new Food("Chocolate Mousse", 450, "Finished the day right!"),
     ];
   }
-  taskWasSelected(clickedTask: Task): void {
-    console.log('parent', clickedTask);
+  foodWasSelected(clickedFood: Food): void {
+    console.log(clickedFood);
   }
 }
