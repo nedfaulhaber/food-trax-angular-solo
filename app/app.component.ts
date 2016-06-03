@@ -27,7 +27,7 @@ export class FoodListComponent {
    this.onFoodSelect.emit(clickedFood);
  }
 }
-oy vey
+
 //root component//
 @Component({
   selector: 'my-app',
