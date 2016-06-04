@@ -6,12 +6,10 @@ import { Food } from './food.model';
     selector: 'food-display',
     inputs: ['food'],
   template: `
-  <div *ngFor="#currentFood of foodList" (click)="foodClicked(currentFood)">
     <h3> Meal Time! </h3>
     <h4>Name: {{currentFood.name}}</h4>
     <h4>Calories: {{currentFood.calories}}</h4>
     <h4>Details: {{currentFood.details}}</h4>
-  </div>
   `
 })
 
