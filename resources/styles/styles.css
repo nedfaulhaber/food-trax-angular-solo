@@ -2,12 +2,9 @@ h1{
   color: crimson;
 }
 
-.selected {
-  color: #B33397;
-}
 
 .meal-form {
-  margin-top: 10px;
+  margin-top: 60px;
   margin-bottom: 80px;
 }
 

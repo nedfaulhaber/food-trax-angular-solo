@@ -13,17 +13,16 @@ import {SortPipe} from './sort.pipe';
   pipes: [SortPipe],
   directives: [FoodDisplayComponent, EditFoodDetailsComponent, NewFoodComponent],
   template: `
-  <select (change)="onChange($event.target.value)" class="filter">
+  <select (change)="onChange($event.target.value)">
     <option value="all">Show All</option>
     <option value="healthy">Healthy Stuff!</option>
     <option value="unhealthy">Not So Healthy Stuff</option>
   </select>
-  <div *ngFor="#currentFood of foodList"
-    (click)="foodClicked(currentFood)">
-    <h3> Meal Time! </h3>
-    <h4>Name: {{currentFood.name}}</h4>
-    <h4>Calories: {{currentFood.calories}}</h4>
-    <h4>Details: {{currentFood.details}}</h4>
+  <div>
+    <food-display *ngFor="#currentFood of foodList | sort:filterFood"
+      (click)="foodClicked(currentFood)"
+      [class.selected]="currentFood === selectedFood" [food]="currentFood">
+    </food-display>
   </div>
   <edit-food-details *ngIf="selectedFood"[food]="selectedFood">
   </edit-food-details>
@@ -35,16 +34,20 @@ export class FoodListComponent {
   public foodList: Food[];
   public onFoodSelect: EventEmitter<Food>;
   public selectedFood: Food;
+  public filterFood: string = "all"
   constructor() {
     this.onFoodSelect = new EventEmitter();
   }
   foodClicked(clickedFood: Food): void {
-    console.log('child', clickedFood);
     this.selectedFood = clickedFood;
     this.onFoodSelect.emit(clickedFood);
   }
   createFood(newFood: Food):void {
     this.foodList.push(newFood);
+  }
+  onChange(filterOption) {
+    this.filterFood = filterOption;
+    console.log(this.filterFood);
   }
 }
 
