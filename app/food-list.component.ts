@@ -3,14 +3,21 @@ import { FoodDisplayComponent } from './food-display.component';
 import { Food } from './food.model';
 import { EditFoodDetailsComponent } from './edit-food-details.component';
 import { NewFoodComponent } from './new-food.component';
+import {SortPipe} from './sort.pipe';
 
 //1st child - food-list//
 @Component({
   selector: 'food-list',
   inputs: ['foodList'],
   outputs: ['onFoodSelect'],
+  pipes: [SortPipe],
   directives: [FoodDisplayComponent, EditFoodDetailsComponent, NewFoodComponent],
   template: `
+  <select (change)="onChange($event.target.value)" class="filter">
+    <option value="all">Show All</option>
+    <option value="healthy">Healthy Stuff!</option>
+    <option value="unhealthy">Not So Healthy Stuff</option>
+  </select>
   <div *ngFor="#currentFood of foodList"
     (click)="foodClicked(currentFood)">
     <h3> Meal Time! </h3>
