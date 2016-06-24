@@ -10,6 +10,7 @@ import { Food } from './food.model';
     <div class="container">
       <h1>What Was That I Ate??</h1>
       <h5>For Date: 06/03/16</h5>
+      <br>
       <food-list
         [foodList]="foods"
         (onFoodSelect)="foodWasSelected($event)">

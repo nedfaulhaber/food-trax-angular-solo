@@ -18,6 +18,11 @@ import {SortPipe} from './sort.pipe';
     <option value="healthy">Healthy Stuff!</option>
     <option value="unhealthy">Not So Healthy Stuff</option>
   </select>
+  <br>
+  <br>
+  <h3>Meal Time!</h3>
+  <h5>Today, you ate:</h5>
+  <br>
   <div>
     <food-display *ngFor="#currentFood of foodList | sort:filterFood"
       (click)="foodClicked(currentFood)"
