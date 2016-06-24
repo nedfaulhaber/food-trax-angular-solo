@@ -9,6 +9,8 @@ _This project was for Epicodus JavaScript class and was designed to practice Ang
 ## Setup/Installation Requirements
 
 * _Clone this repository._
+* _Install Node.js_
+* _Install globals if needed (npm install gulp -g, npm install bower -g, gem install sass, npm install typescript -g, apm install atom-typescript)_
 * _In the terminal, run:_
 * _npm install_
 * _bower install_
