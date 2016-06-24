@@ -1,6 +1,4 @@
-# _{Application Name}_
-
-#### _{Brief description of application}, {Date of current version}_
+# _Angular2 Meal Tracker_
 
 #### By Ned Faulhaber
 
